@@ -10,3 +10,10 @@ def create_payment_pix():
 @app.route('/payments/pix/confirmation', methods=['POST'])
 def pix_confirmation():
     return jsonify ({"message": "Payment confirmed"})
+
+@app.route('/payments/pix/<int:payment_id>', methods=['GET'])
+def payment_pix_page(payment_id):
+    return 'pagamento pix'
+
+if __name__ == '__main__':
+    app.run(debug=True)
