@@ -22,7 +22,7 @@ def create_payment_pix():
                           expiration_date=expiration_date)
 
     db.session.add(new_payment)
-    db.session.commit
+    db.session.commit()
 
     return jsonify ({"message": "Payment created",
                     "payment": new_payment.to_dict()})
