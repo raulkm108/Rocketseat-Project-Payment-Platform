@@ -11,7 +11,7 @@ db.init_app(app)
 
 @app.route('/payments/pix', methods=['POST'])
 def create_payment_pix():
-    data = request.json()
+    data = request.get_json()
 
     if 'value' not in data:
         return jsonify ({"message": "Invalid value"})
