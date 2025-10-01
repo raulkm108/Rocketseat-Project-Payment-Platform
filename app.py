@@ -24,6 +24,8 @@ def create_payment_pix():
 
     pix_obj = Pix()
     data_payment_pix = pix_obj.create_payment()
+    new_payment.bank_payment_id = data_payment_pix["data_payment_id"]
+    new_payment.qr_code = data_payment_pix["qr_code_path"]
 
 
 
