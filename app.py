@@ -2,6 +2,7 @@ from flask import Flask, jsonify, request
 from repository.database import db
 from db_models.payment import Payment
 from datetime import datetime, timedelta
+from payments.pix import Pix
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
@@ -21,13 +22,18 @@ def create_payment_pix():
     new_payment = Payment(value=data['value'], 
                           expiration_date=expiration_date)
 
+    pix_obj = Pix()
+    data_payment_pix = pix_obj.create_payment()
+
+
+
     db.session.add(new_payment)
     db.session.commit()
 
     return jsonify ({"message": "Payment created",
                     "payment": new_payment.to_dict()})
 
-@app.route('/payments/pix/confirmation', methods=['POST'])
+@app.route('/payments/pix/confirmation', methods=['POST']) 
 def pix_confirmation():
     return jsonify ({"message": "Payment confirmed"})
 
