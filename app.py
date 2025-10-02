@@ -46,5 +46,6 @@ def pix_confirmation():
 def payment_pix_page(payment_id):
     return render_template('payment.html')
 
+
 if __name__ == '__main__':
     app.run(debug=True)
