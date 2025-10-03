@@ -67,6 +67,9 @@ def payment_pix_page(payment_id):
 
     payment = Payment.query.get(payment_id)
 
+    if payment.paid:
+        return render_template('confirmed_payment.html')
+
     return render_template('payment.html', 
                            payment_id=payment.id, 
                            value=payment.value, 
